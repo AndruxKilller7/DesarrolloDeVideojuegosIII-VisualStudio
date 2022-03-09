@@ -1,0 +1,46 @@
+﻿@model WebApplication3.Models.Skins
+
+@{
+    ViewData["Title"] = "DeleteSkin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>DeleteSkin</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Skins</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Grade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Grade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RankRequiredToUnlock)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RankRequiredToUnlock)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteSkin">
+        <input type="hidden" asp-for="IdSkin" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="IndexSkin">Back to List</a>
+    </form>
+</div>
