@@ -58,11 +58,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Request.cs" />
     <Compile Include="Assets\Scripts\Users.cs" />
-    <Compile Include="Assets\Scripts\Skins.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\SkinsPlayer.cs" />
-    <Compile Include="Assets\Scripts\Ranks.cs" />
     <Compile Include="Assets\Scripts\Rank.cs" />
+    <Compile Include="Assets\Scripts\Skins.cs" />
+    <Compile Include="Assets\Scripts\Ranks.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

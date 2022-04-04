@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player 
+
+[SerializeField]
+public class Players 
 {
 
     public string idUser;
-    public string playerName;
+    public string nickName;
     public string pointsXP;
     public string ranking;
     public string skins;
