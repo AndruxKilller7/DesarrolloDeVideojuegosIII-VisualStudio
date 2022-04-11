@@ -15,9 +15,13 @@ public class Request : MonoBehaviour
     //public Text rankBonus;
 
     public Text containerText;
+    public Transform pivotText;
+    public Text[] playersText;
+    public GameObject padreTextCanvas;
     void Start()
     {
         StartCoroutine(GetRequest("http://localhost:8242/api/players"));
+       
     }
 
     // Update is called once per frame
@@ -56,8 +60,15 @@ public class Request : MonoBehaviour
                     //stylishPTS.text = ranks.stylishPTS;
                     //rankBonus.text = ranks.rankBonus;
                     //devilHunterRank.text = ranks.devilHunterRank;
-                    for(int i=0; i<players.players.Length;i++)
+                    playersText = new Text[players.players.Length];
+                    for (int i=0; i<players.players.Length;i++)
                     {
+                        
+                        playersText[i] = containerText;
+
+                        playersText[i].text ="Player "+(i+1)+": "+players.players[i].nickName;
+                        Instantiate(playersText[i], new Vector3(pivotText.transform.position.x+40, pivotText.transform.position.y-40*(i+1), pivotText.transform.position.z),transform.rotation,padreTextCanvas.transform);
+                        
 
                         print(players.players[i].nickName);
                     }
