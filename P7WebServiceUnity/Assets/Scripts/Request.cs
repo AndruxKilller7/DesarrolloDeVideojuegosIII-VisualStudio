@@ -67,7 +67,7 @@ public class Request : MonoBehaviour
                         playersText[i] = containerText;
 
                         playersText[i].text ="Player "+(i+1)+": "+players.players[i].nickName;
-                        Instantiate(playersText[i], new Vector3(pivotText.transform.position.x+40, pivotText.transform.position.y-40*(i+1), pivotText.transform.position.z),transform.rotation,padreTextCanvas.transform);
+                        Instantiate(playersText[i], new Vector3(pivotText.transform.position.x+45, pivotText.transform.position.y-30*(i+1), pivotText.transform.position.z),transform.rotation,padreTextCanvas.transform);
                         
 
                         print(players.players[i].nickName);
