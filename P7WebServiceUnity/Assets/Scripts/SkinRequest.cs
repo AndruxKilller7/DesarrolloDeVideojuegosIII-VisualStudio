@@ -10,6 +10,7 @@ public class SkinRequest : MonoBehaviour
     public Text playerName;
     public Text[] skinsName;
     public Text[] skinsCode;
+    public Text nPlayer;
     public int indiceSkin;
     public Sprite[] sprites;
     public Image[] contenedorDeSkins;
@@ -22,7 +23,7 @@ public class SkinRequest : MonoBehaviour
     void Start()
     {
         
-        StartCoroutine(GetRequest("http://localhost:8242/api/players/1"));
+        StartCoroutine(GetRequest("http://localhost:8242/api/players/3"));
 
     }
 
@@ -81,7 +82,7 @@ public class SkinRequest : MonoBehaviour
                     print(webrequest.downloadHandler.text);
                  
                     Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
-                  
+                    nPlayer.text = player.id.ToString();
                     print(player.nickName);
                     playerName.text = player.nickName;
                     Skin[] skins = new Skin[player.playerSkins.Length];
