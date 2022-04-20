@@ -1,0 +1,92 @@
+﻿@model MyCrudGame.Models.Rank
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Rank</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon" class="control-label"></label>
+                <input asp-for="Icon" class="form-control" />
+                <span asp-validation-for="Icon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxExperience" class="control-label"></label>
+                <input asp-for="MaxExperience" class="form-control" />
+                <span asp-validation-for="MaxExperience" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinExperience" class="control-label"></label>
+                <input asp-for="MinExperience" class="form-control" />
+                <span asp-validation-for="MinExperience" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlayerId" class="control-label"></label>
+                <select asp-for="PlayerId" class ="form-control" asp-items="ViewBag.PlayerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="orbs" class="control-label"></label>
+                <input asp-for="orbs" class="form-control" />
+                <span asp-validation-for="orbs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="damage" class="control-label"></label>
+                <input asp-for="damage" class="form-control" />
+                <span asp-validation-for="damage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="stylishPTS" class="control-label"></label>
+                <input asp-for="stylishPTS" class="form-control" />
+                <span asp-validation-for="stylishPTS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="itemUse" class="control-label"></label>
+                <input asp-for="itemUse" class="form-control" />
+                <span asp-validation-for="itemUse" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="time" class="control-label"></label>
+                <input asp-for="time" class="form-control" />
+                <span asp-validation-for="time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="rankBonus" class="control-label"></label>
+                <input asp-for="rankBonus" class="form-control" />
+                <span asp-validation-for="rankBonus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="devilHunterRank" class="control-label"></label>
+                <input asp-for="devilHunterRank" class="form-control" />
+                <span asp-validation-for="devilHunterRank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
