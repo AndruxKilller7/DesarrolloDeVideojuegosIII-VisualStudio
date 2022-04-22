@@ -6,17 +6,24 @@ using UnityEngine.UI;
 
 public class PostWebServiceRequest : MonoBehaviour
 {
-
+    public InputField ingresaName;
+    public InputField ingresarID;
     public void Start()
     {
-        StartCoroutine(PostRequest("http://localhost:8242/api/players/"));
+        StartCoroutine(PostPlayer("http://localhost:8242/api/players/"));
     }
 
-    IEnumerator PostRequest(string url)
+    public void CrearNuevoPlayer()
+    {
+        
+    }
+
+    IEnumerator PostPlayer(string url)
     {
         WWWForm form = new WWWForm();
-        form.AddField("nickname", "Ninja");
-        form.AddField("id", "2");
+        form.AddField("nickName", "Ninja");
+        form.AddField("id", 2);
+
         using (UnityWebRequest webrequest = UnityWebRequest.Post(url,form))
         {
             yield return webrequest.SendWebRequest();

@@ -23,7 +23,8 @@ public class SkinRequest : MonoBehaviour
     void Start()
     {
         
-        StartCoroutine(GetRequest("http://localhost:8242/api/players/3"));
+        StartCoroutine(GetRequest("http://localhost:8242/api/players/1"));
+        StartCoroutine(Authenticate("http://localhost:8242/api/players"));
 
     }
 
@@ -35,35 +36,7 @@ public class SkinRequest : MonoBehaviour
         
     }
 
-    public void AnteriorSkin()
-    {
-        if (indiceSkin > 0)
-        {
-            indiceSkin -= 1;
-            
-        }
-        else
-        {
-            Debug.Log("Ya no hay mas Skins");
-        }
-        StartCoroutine(GetRequest("http://localhost:8242/api/players/1"));
-    }
-
-
-    public void SiguienteSkin()
-    {
-        if (indiceSkin < 2)
-        {
-            indiceSkin += 1;
-            
-        }
-        else
-        {
-            Debug.Log("Ya no hay mas Skins");
-        }
-        StartCoroutine(GetRequest("http://localhost:8242/api/players/1"));
-    }
-
+   
 
     IEnumerator GetRequest(string url)
     {
@@ -99,6 +72,31 @@ public class SkinRequest : MonoBehaviour
 
                     break;
             }
+        }
+    }
+    IEnumerator Authenticate(string url)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("nickName", "VirtualXI");
+        form.AddField("id", 3);
+        using (UnityWebRequest webrequest = UnityWebRequest.Post(url, form))
+        {
+            yield return webrequest.SendWebRequest();
+
+            switch (webrequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                case UnityWebRequest.Result.ProtocolError:
+                    print("error");
+                    break;
+                case UnityWebRequest.Result.Success:
+                    print(webrequest.downloadHandler.text);
+                    Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
+                    print(player.nickName);
+                    break;
+
+            };
         }
     }
 

@@ -88,7 +88,7 @@ namespace MyCrudGame.Controllers
         // POST: api/Players1
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        //public async Task<ActionResult<Player>> PostPlayer(Player player)
+       
         public async Task<ActionResult<Player>> PostPlayer([FromForm]Player player)
         {
             _context.Players.Add(player);
