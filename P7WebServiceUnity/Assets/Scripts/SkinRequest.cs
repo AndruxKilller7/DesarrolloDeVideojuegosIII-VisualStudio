@@ -19,11 +19,13 @@ public class SkinRequest : MonoBehaviour
     public Transform pivotTextSkin;
     public GameObject padreTextCanvas;
     public skins dates;
+    public GameObject[] skinsDates;
+    static int indicePlayer=2;
     
     void Start()
     {
         
-        StartCoroutine(GetRequest("http://localhost:8242/api/players/1"));
+        StartCoroutine(GetRequest("http://localhost:8242/api/players/"+indicePlayer));
         //StartCoroutine(Authenticate("http://localhost:8242/api/players"));
 
     }
@@ -62,12 +64,15 @@ public class SkinRequest : MonoBehaviour
                     for(int i=0; i<skins.Length; i++)
                     {
                         skins[i] = player.playerSkins[i].skin;
+                        skinsDates[i].GetComponent<GetDatesSkin>().enPropiedad.SetActive(true);
+
                     }
+
                   
                     //print(player.playerSkins[indiceSkin].skin.name);
                     //print(indiceSkin);
 
-                    ViewSkinDate(skins);
+                    //ViewSkinDate(skins);
 
 
                     break;
@@ -119,5 +124,37 @@ public class SkinRequest : MonoBehaviour
 
         //    skinName.text = skin.name;
         //skinCode.text = skin.code;
+    }
+
+    public void ComprarSkin()
+    {
+        StartCoroutine(PostPlayerSkins("http://localhost:8242/api/playersSkin", 3,7));
+    }
+
+    IEnumerator PostPlayerSkins(string url,int idSkin,int id)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("playerId", 2);
+        form.AddField("skinId", idSkin);
+        form.AddField("Id", id);
+        using (UnityWebRequest webrequest = UnityWebRequest.Post(url, form))
+        {
+            yield return webrequest.SendWebRequest();
+
+            switch (webrequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                case UnityWebRequest.Result.ProtocolError:
+                    print("error");
+                    break;
+                case UnityWebRequest.Result.Success:
+                    print(webrequest.downloadHandler.text);
+                    Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
+                    print(player.nickName);
+                    break;
+
+            };
+        }
     }
 }

@@ -648,7 +648,6 @@ C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGa
 C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.RazorAssemblyInfo.cache
 C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.RazorAssemblyInfo.cs
 C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\staticwebassets\MyCrudGame.StaticWebAssets.Manifest.cache
-C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\staticwebassets\MyCrudGame.StaticWebAssets.xml
 C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\scopedcss\bundle\MyCrudGame.styles.css
 C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.TagHelpers.input.cache
 C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.TagHelpers.output.cache
