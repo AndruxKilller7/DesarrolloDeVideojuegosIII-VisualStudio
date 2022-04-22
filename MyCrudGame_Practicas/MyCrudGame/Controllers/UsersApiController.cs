@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace MyCrudGame.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/usersApi1")]
     public class UsersApiController : Controller
     {
         private readonly CRUDMyGameContext _context;
@@ -39,6 +39,22 @@ namespace MyCrudGame.Controllers
             return user;
         }
 
+        // POST: api/User
 
+        [HttpPost]
+
+        public async Task<ActionResult<User>> Authenticate([FromForm] User user)
+        {
+            var userResult = await Task.Run(() => _context.Users.SingleOrDefault(x => x.Email == user.Email && x.Pasword == user.Pasword));
+            if (userResult == null)
+            {
+                return null;
+            }
+
+            var player = await _context.Players.Include(P => P.Ranks).Include(p => p.IdNavigation).Include(p => p.PlayerSkins).FirstOrDefaultAsync(m => m.Id == userResult.Id);
+            return CreatedAtAction("GetPlayer", new { id = player.Id }, player);
+            
+
+        }
     }
 }

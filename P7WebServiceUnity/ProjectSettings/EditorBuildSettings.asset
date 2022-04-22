@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/PostWebService.unity
+    guid: f6e66586527d8ba4daef15e1ee6243c9
+  - enabled: 1
+    path: Assets/Scenes/MainMenuWebService.unity
+    guid: 9c2ee0bd324b1fb4b824566afd67518c
+  - enabled: 1
+    path: Assets/Scenes/SkinsChanges.unity
+    guid: aa98bc53fe7128f458064a9ae36cfa6c
+  - enabled: 1
+    path: Assets/Scenes/GameOverPlayersView.unity
+    guid: 9110aa12b48d70544b0a44a4f446bb7f
   m_configObjects: {}

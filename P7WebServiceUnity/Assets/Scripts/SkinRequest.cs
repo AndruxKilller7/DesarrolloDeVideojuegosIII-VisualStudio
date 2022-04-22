@@ -24,7 +24,7 @@ public class SkinRequest : MonoBehaviour
     {
         
         StartCoroutine(GetRequest("http://localhost:8242/api/players/1"));
-        StartCoroutine(Authenticate("http://localhost:8242/api/players"));
+        //StartCoroutine(Authenticate("http://localhost:8242/api/players"));
 
     }
 
@@ -78,7 +78,7 @@ public class SkinRequest : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("nickName", "VirtualXI");
-        form.AddField("id", 3);
+        form.AddField("id", 1003);
         using (UnityWebRequest webrequest = UnityWebRequest.Post(url, form))
         {
             yield return webrequest.SendWebRequest();
