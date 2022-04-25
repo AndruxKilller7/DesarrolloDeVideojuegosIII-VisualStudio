@@ -20,7 +20,7 @@ namespace MyCrudGame.Models
         public DateTime DateOfBirthday { get; set; }
         public string MiddleName { get; set; }
         public int? Age { get; set; }
-        public int Email { get; set; }
+        public string Email { get; set; }
 
         public string Pasword { get; set; }
         [Column("mnk")]

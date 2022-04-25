@@ -616,7 +616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: -369.97757}
+  m_AnchoredPosition: {x: 15, y: -369.9775}
   m_SizeDelta: {x: 1305.726, y: 1887.926}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &232891436
@@ -1098,10 +1098,10 @@ RectTransform:
   m_Father: {fileID: 232891434}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 652.863, y: -190.16298}
-  m_SizeDelta: {x: 100, y: 207.6}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &549293906
 GameObject:
@@ -1218,10 +1218,13 @@ MonoBehaviour:
   padreTextCanvas: {fileID: 232891433}
   dates: {fileID: 11400000, guid: 984dfd74374eef84f9e155279e95445b, type: 2}
   skinsDates:
+  - {fileID: 0}
   - {fileID: 562815020900928629}
   - {fileID: 1224211282}
   - {fileID: 747601165}
   - {fileID: 1448361036}
+  ingresaEmail: {fileID: 0}
+  ingresarPasword: {fileID: 0}
 --- !u!1 &610034440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,10 +1739,10 @@ RectTransform:
   m_Father: {fileID: 232891434}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 652.863, y: -1320.863}
-  m_SizeDelta: {x: 100, y: 207.6}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &747601167
 MonoBehaviour:
@@ -2024,11 +2027,11 @@ MonoBehaviour:
       - m_Target: {fileID: 549293910}
         m_TargetAssemblyTypeName: SkinRequest, Assembly-CSharp
         m_MethodName: ComprarSkin
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2322,7 +2325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1120911474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2511,10 +2514,10 @@ RectTransform:
   m_Father: {fileID: 232891434}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 652.863, y: -943.96295}
-  m_SizeDelta: {x: 100, y: 207.6}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1224211284
 MonoBehaviour:
@@ -3039,10 +3042,10 @@ RectTransform:
   m_Father: {fileID: 232891434}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 652.863, y: -1697.7631}
-  m_SizeDelta: {x: 100, y: 207.6}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1506865344
 GameObject:
@@ -3130,11 +3133,11 @@ MonoBehaviour:
       - m_Target: {fileID: 549293910}
         m_TargetAssemblyTypeName: SkinRequest, Assembly-CSharp
         m_MethodName: ComprarSkin
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3499,11 +3502,11 @@ MonoBehaviour:
       - m_Target: {fileID: 549293910}
         m_TargetAssemblyTypeName: SkinRequest, Assembly-CSharp
         m_MethodName: ComprarSkin
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3933,8 +3936,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1378081371}
   m_HandleRect: {fileID: 1378081370}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.21537025
+  m_Value: 1
+  m_Size: 0.21611494
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4626,10 +4629,10 @@ RectTransform:
   m_Father: {fileID: 232891434}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 652.863, y: -567.063}
-  m_SizeDelta: {x: 100, y: 207.6}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &562815020900928629
 GameObject:
@@ -5081,11 +5084,11 @@ MonoBehaviour:
       - m_Target: {fileID: 549293910}
         m_TargetAssemblyTypeName: SkinRequest, Assembly-CSharp
         m_MethodName: ComprarSkin
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

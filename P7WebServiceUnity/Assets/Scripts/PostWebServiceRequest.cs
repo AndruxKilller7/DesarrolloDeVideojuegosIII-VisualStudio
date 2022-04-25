@@ -9,9 +9,12 @@ public class PostWebServiceRequest : MonoBehaviour
 {
     public InputField ingresaEmail;
     public InputField ingresarPasword;
+    public static string idPlayer;
     public void Start()
     {
         //StartCoroutine(PostPlayer("http://localhost:8242/api/players/"));
+        //StartCoroutine(Authenticate("http://localhost:8242/api/usersApi1"));
+       
     }
 
     public void VerificarUsuario()
@@ -41,6 +44,7 @@ public class PostWebServiceRequest : MonoBehaviour
                     Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
                    
                     print(player.nickName);
+                   
             
                     break;
             }
@@ -50,8 +54,10 @@ public class PostWebServiceRequest : MonoBehaviour
     IEnumerator Authenticate(string url)
     {
         WWWForm form = new WWWForm();
-        form.AddField("Email", ingresaEmail.text);
-        form.AddField("Pasword", ingresarPasword.text);
+        //form.AddField("Email", ingresaEmail.text);
+        //form.AddField("Pasword", ingresarPasword.text);
+        form.AddField("Email", 1);
+        form.AddField("Pasword", 1234);
 
         using (UnityWebRequest webrequest = UnityWebRequest.Post(url, form))
         {
@@ -65,11 +71,12 @@ public class PostWebServiceRequest : MonoBehaviour
                     break;
                 case UnityWebRequest.Result.Success:
                     print(webrequest.downloadHandler.text);
+                    idPlayer = webrequest.downloadHandler.text;
                     SceneManager.LoadScene(1);
-                    Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
+                    //SceneManager.LoadScene(1);
+                    //User user = JsonUtility.FromJson<User>(webrequest.downloadHandler.text);
 
-                    print(player.nickName);
-
+                    //print(user.Player.id);
                     break;
             }
         }

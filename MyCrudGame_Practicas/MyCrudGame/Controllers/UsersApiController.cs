@@ -52,7 +52,8 @@ namespace MyCrudGame.Controllers
             }
 
             var player = await _context.Players.Include(P => P.Ranks).Include(p => p.IdNavigation).Include(p => p.PlayerSkins).FirstOrDefaultAsync(m => m.Id == userResult.Id);
-            return CreatedAtAction("GetPlayer", new { id = player.Id }, player);
+            return CreatedAtAction("GetPlayer", new { id = player.Id }, player.Id);
+
             
 
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SkinRequest : MonoBehaviour
 {
@@ -20,14 +21,33 @@ public class SkinRequest : MonoBehaviour
     public GameObject padreTextCanvas;
     public skins dates;
     public GameObject[] skinsDates;
-    static int indicePlayer=2;
-    
+    static int indicePlayer;
+    static bool usuarioConfirmado;
+    static bool tiendaDeSkins;
+    public InputField ingresaEmail;
+    public InputField ingresarPasword;
+    public static string idPlayer;
+    public int skinsCantidad;
+    PlayerSskinsLista[] playercontainer; 
+    int idsSkin;
+
+
     void Start()
     {
-        
-        StartCoroutine(GetRequest("http://localhost:8242/api/players/"+indicePlayer));
-        //StartCoroutine(Authenticate("http://localhost:8242/api/players"));
+       
+        if(usuarioConfirmado && tiendaDeSkins)
+        {
+            StartCoroutine(GetRequest("http://localhost:8242/api/players/"+idPlayer));
+            StartCoroutine(GetRequestPlayersList("http://localhost:8242/api/playersSkin"));
+        }
 
+        //Debug.Log(idPlayer);
+        //Debug.Log(skinsCantidad);
+        //Debug.Log(usuarioConfirmado);
+        //Debug.Log(tiendaDeSkins);
+        //Debug.Log("http://localhost:8242/api/players/" + idPlayer);
+        //StartCoroutine(Authenticate("http://localhost:8242/api/players"));
+        
     }
 
     
@@ -38,7 +58,18 @@ public class SkinRequest : MonoBehaviour
         
     }
 
-   
+    public void VerificarUsuario()
+    {
+        
+        StartCoroutine(Authenticate("http://localhost:8242/api/usersApi1"));
+    }
+
+    public void VerTiendaDeSkins()
+    {
+        tiendaDeSkins = true;
+        SceneManager.LoadScene(2);
+    }
+
 
     IEnumerator GetRequest(string url)
     {
@@ -64,10 +95,11 @@ public class SkinRequest : MonoBehaviour
                     for(int i=0; i<skins.Length; i++)
                     {
                         skins[i] = player.playerSkins[i].skin;
-                        skinsDates[i].GetComponent<GetDatesSkin>().enPropiedad.SetActive(true);
+                        skinsDates[skins[i].id].GetComponent<GetDatesSkin>().enPropiedad.SetActive(true);
 
                     }
 
+                    idsSkin = skins.Length;
                   
                     //print(player.playerSkins[indiceSkin].skin.name);
                     //print(indiceSkin);
@@ -79,15 +111,16 @@ public class SkinRequest : MonoBehaviour
             }
         }
     }
+
     IEnumerator Authenticate(string url)
     {
         WWWForm form = new WWWForm();
-        form.AddField("nickName", "VirtualXI");
-        form.AddField("id", 1003);
+        form.AddField("Email", ingresaEmail.text);
+        form.AddField("Pasword", ingresarPasword.text);
+
         using (UnityWebRequest webrequest = UnityWebRequest.Post(url, form))
         {
             yield return webrequest.SendWebRequest();
-
             switch (webrequest.result)
             {
                 case UnityWebRequest.Result.ConnectionError:
@@ -97,15 +130,69 @@ public class SkinRequest : MonoBehaviour
                     break;
                 case UnityWebRequest.Result.Success:
                     print(webrequest.downloadHandler.text);
-                    Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
-                    print(player.nickName);
-                    break;
+                    usuarioConfirmado = true;
 
-            };
+                    idPlayer = webrequest.downloadHandler.text;
+                    SceneManager.LoadScene(1);
+
+                    break;
+            }
         }
     }
 
-    public void ViewSkinDate(Skin[] skins)
+    IEnumerator GetRequestPlayersList(string url)
+    {
+        using (UnityWebRequest webrequest = UnityWebRequest.Get(url))
+        {
+            yield return webrequest.SendWebRequest();
+            switch (webrequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                case UnityWebRequest.Result.ProtocolError:
+                    print("error");
+                    break;
+                case UnityWebRequest.Result.Success:
+                    print(webrequest.downloadHandler.text);
+                   
+                    PlayerSskinsLista players = JsonUtility.FromJson<PlayerSskinsLista>("{\"players\":" + webrequest.downloadHandler.text + "}");
+                 
+                    playercontainer = new PlayerSskinsLista[players.playerSkins.Length];
+                    skinsCantidad = playercontainer.Length;
+
+                  
+                    break;
+            }
+        }
+    }
+
+//IEnumerator Authenticate(string url)
+//{
+//    WWWForm form = new WWWForm();
+//    form.AddField("nickName", "VirtualXI");
+//    form.AddField("id", 1003);
+//    using (UnityWebRequest webrequest = UnityWebRequest.Post(url, form))
+//    {
+//        yield return webrequest.SendWebRequest();
+
+//        switch (webrequest.result)
+//        {
+//            case UnityWebRequest.Result.ConnectionError:
+//            case UnityWebRequest.Result.DataProcessingError:
+//            case UnityWebRequest.Result.ProtocolError:
+//                print("error");
+//                break;
+//            case UnityWebRequest.Result.Success:
+//                print(webrequest.downloadHandler.text);
+//                Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
+//                print(player.nickName);
+//                break;
+
+//        };
+//    }
+//}
+
+public void ViewSkinDate(Skin[] skins)
     {
         skinView = new GameObject[skins.Length];
         contenedorDeSkins = new Image[skins.Length];
@@ -126,15 +213,20 @@ public class SkinRequest : MonoBehaviour
         //skinCode.text = skin.code;
     }
 
-    public void ComprarSkin()
+    public void ComprarSkin(int id)
     {
-        StartCoroutine(PostPlayerSkins("http://localhost:8242/api/playersSkin", 3,7));
+        StartCoroutine(PostPlayerSkins("http://localhost:8242/api/playersSkin", id,9));
+    }
+
+    public void TiendaDeSkins()
+    {
+        SceneManager.LoadScene(2);
     }
 
     IEnumerator PostPlayerSkins(string url,int idSkin,int id)
     {
         WWWForm form = new WWWForm();
-        form.AddField("playerId", 2);
+        form.AddField("playerId", int.Parse(idPlayer));
         form.AddField("skinId", idSkin);
         form.AddField("Id", id);
         using (UnityWebRequest webrequest = UnityWebRequest.Post(url, form))

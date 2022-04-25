@@ -318,7 +318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41.399994, y: -69.6}
+  m_AnchoredPosition: {x: -41.399994, y: -63.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &237378345
@@ -1220,7 +1220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -210.5, y: -69.6}
+  m_AnchoredPosition: {x: -210.5, y: -63.6}
   m_SizeDelta: {x: 228.382, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023622673
@@ -1277,6 +1277,7 @@ GameObject:
   - component: {fileID: 1072133183}
   - component: {fileID: 1072133182}
   - component: {fileID: 1072133185}
+  - component: {fileID: 1072133186}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1361,6 +1362,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91334bb929f58ac4cb66174a9a4b2358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingresaEmail: {fileID: 853437605}
+  ingresarPasword: {fileID: 465527208}
+--- !u!114 &1072133186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072133181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089947feb068cc048906b6be1a427ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 0}
+  skinsName: []
+  skinsCode: []
+  nPlayer: {fileID: 0}
+  indiceSkin: 0
+  sprites: []
+  contenedorDeSkins: []
+  skinConteiner: {fileID: 0}
+  skinView: []
+  pivotTextSkin: {fileID: 0}
+  padreTextCanvas: {fileID: 0}
+  dates: {fileID: 0}
+  skinsDates: []
   ingresaEmail: {fileID: 853437605}
   ingresarPasword: {fileID: 465527208}
 --- !u!1 &1077066511
@@ -2250,8 +2278,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1072133185}
-        m_TargetAssemblyTypeName: PostWebServiceRequest, Assembly-CSharp
+      - m_Target: {fileID: 1072133186}
+        m_TargetAssemblyTypeName: SkinRequest, Assembly-CSharp
         m_MethodName: VerificarUsuario
         m_Mode: 1
         m_Arguments:
