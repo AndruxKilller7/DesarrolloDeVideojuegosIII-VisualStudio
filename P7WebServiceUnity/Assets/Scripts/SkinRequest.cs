@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SkinRequest : MonoBehaviour
 {
-
+   
     public Text playerName;
     public Text[] skinsName;
     public Text[] skinsCode;
@@ -28,17 +28,19 @@ public class SkinRequest : MonoBehaviour
     public InputField ingresarPasword;
     public static string idPlayer;
     public int skinsCantidad;
-    PlayerSskinsLista[] playercontainer; 
-    int idsSkin;
+    PlayerSkins[] playercontainer; 
+    static int idsSkin =7;
 
 
     void Start()
     {
        
-        if(usuarioConfirmado && tiendaDeSkins)
+        Debug.Log("Skins:" + idsSkin);
+        if (usuarioConfirmado && tiendaDeSkins)
         {
-            StartCoroutine(GetRequest("http://localhost:8242/api/players/"+idPlayer));
             StartCoroutine(GetRequestPlayersList("http://localhost:8242/api/playersSkin"));
+            StartCoroutine(GetRequest("http://localhost:8242/api/players/"+idPlayer));
+            
         }
 
         //Debug.Log(idPlayer);
@@ -155,11 +157,11 @@ public class SkinRequest : MonoBehaviour
                 case UnityWebRequest.Result.Success:
                     print(webrequest.downloadHandler.text);
                    
-                    PlayerSskinsLista players = JsonUtility.FromJson<PlayerSskinsLista>("{\"players\":" + webrequest.downloadHandler.text + "}");
+                    PlayerSkins players = JsonUtility.FromJson<PlayerSkins>("{\"playerSkins\":" + webrequest.downloadHandler.text + "}");
                  
-                    playercontainer = new PlayerSskinsLista[players.playerSkins.Length];
+                    playercontainer = new PlayerSkins[players.playerSkins.Length];
                     skinsCantidad = playercontainer.Length;
-
+                    Debug.Log(skinsCantidad);
                   
                     break;
             }
@@ -215,7 +217,11 @@ public void ViewSkinDate(Skin[] skins)
 
     public void ComprarSkin(int id)
     {
-        StartCoroutine(PostPlayerSkins("http://localhost:8242/api/playersSkin", id,9));
+       
+        StartCoroutine(PostPlayerSkins("http://localhost:8242/api/playersSkin", id,skinsCantidad+1));
+        
+
+       
     }
 
     public void TiendaDeSkins()

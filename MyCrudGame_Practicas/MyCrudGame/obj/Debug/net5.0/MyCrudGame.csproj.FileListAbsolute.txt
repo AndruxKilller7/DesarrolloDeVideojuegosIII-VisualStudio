@@ -692,3 +692,4 @@ C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGa
 C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\ref\MyCrudGame.dll
 C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.pdb
 C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.genruntimeconfig.cache
+C:\Users\usuariocc\source\repos\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\staticwebassets\MyCrudGame.StaticWebAssets.xml
