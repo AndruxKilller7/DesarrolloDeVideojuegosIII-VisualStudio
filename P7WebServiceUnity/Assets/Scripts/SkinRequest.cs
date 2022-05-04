@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Text;
 
 public class SkinRequest : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class SkinRequest : MonoBehaviour
     public GameObject[] skinsDates;
     static int indicePlayer;
     static bool usuarioConfirmado;
+    static bool verPerfil;
     static bool tiendaDeSkins;
     public InputField ingresaEmail;
     public InputField ingresarPasword;
@@ -30,7 +32,10 @@ public class SkinRequest : MonoBehaviour
     public int skinsCantidad;
     PlayerSkins[] playercontainer; 
     static int idsSkin =7;
-
+    public InputField leerEmail;
+    public InputField leerNombre;
+    public InputField leerMiddlName;
+    public InputField leerLastName;
 
     void Start()
     {
@@ -42,6 +47,11 @@ public class SkinRequest : MonoBehaviour
             StartCoroutine(GetRequest("http://localhost:8242/api/players/"+idPlayer));
             
         }
+        if (usuarioConfirmado && verPerfil)
+        {
+            StartCoroutine(GetRequestPlayer("http://localhost:8242/api/players/1"));
+            
+        }
 
         //Debug.Log(idPlayer);
         //Debug.Log(skinsCantidad);
@@ -49,7 +59,7 @@ public class SkinRequest : MonoBehaviour
         //Debug.Log(tiendaDeSkins);
         //Debug.Log("http://localhost:8242/api/players/" + idPlayer);
         //StartCoroutine(Authenticate("http://localhost:8242/api/players"));
-        
+
     }
 
     
@@ -107,6 +117,34 @@ public class SkinRequest : MonoBehaviour
                     //print(indiceSkin);
 
                     //ViewSkinDate(skins);
+
+
+                    break;
+            }
+        }
+    }
+    IEnumerator GetRequestPlayer(string url)
+    {
+
+        using (UnityWebRequest webrequest = UnityWebRequest.Get(url))
+        {
+            yield return webrequest.SendWebRequest();
+            switch (webrequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                case UnityWebRequest.Result.ProtocolError:
+                    print("error");
+                    break;
+                case UnityWebRequest.Result.Success:
+                    print(webrequest.downloadHandler.text);
+
+
+                    Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
+                    leerNombre.text = player.nickName;
+
+
+
 
 
                     break;
@@ -228,6 +266,48 @@ public void ViewSkinDate(Skin[] skins)
     {
         SceneManager.LoadScene(2);
     }
+
+    public void ProfielView()
+    {
+        SceneManager.LoadScene(4);
+        verPerfil = true;
+    }
+
+    public void UpdateProfile()
+    {
+        StartCoroutine(PutPlayer("http://localhost:8242/api/players/"+idPlayer));
+    }
+
+    IEnumerator PutPlayer(string url)
+    {
+        string json = "{\"Id\":\"1\", \"NickName\":\"Nerdo\" }";
+        byte[] body = Encoding.UTF8.GetBytes(json);
+       
+
+        using (UnityWebRequest webrequest = UnityWebRequest.Put(url, body))
+        {
+            webrequest.uploadHandler = (UploadHandler)new UploadHandlerRaw(body);
+            webrequest.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+            webrequest.SetRequestHeader("Content-Type", "application/json");
+            yield return webrequest.SendWebRequest();
+            switch (webrequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                case UnityWebRequest.Result.ProtocolError:
+                    print("error");
+                    break;
+                case UnityWebRequest.Result.Success:
+                  
+
+
+
+                    break;
+            }
+        }
+    }
+
+
 
     IEnumerator PostPlayerSkins(string url,int idSkin,int id)
     {

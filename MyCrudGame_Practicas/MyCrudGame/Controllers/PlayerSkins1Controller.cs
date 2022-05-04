@@ -47,6 +47,7 @@ namespace MyCrudGame.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlayerSkin(int id, PlayerSkin playerSkin)
         {
+            
             if (id != playerSkin.Id)
             {
                 return BadRequest();
