@@ -822,7 +822,6 @@ D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\D
 D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.RazorAssemblyInfo.cache
 D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.RazorAssemblyInfo.cs
 D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\staticwebassets\MyCrudGame.StaticWebAssets.Manifest.cache
-D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\staticwebassets\MyCrudGame.StaticWebAssets.xml
 D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\scopedcss\bundle\MyCrudGame.styles.css
 D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.TagHelpers.input.cache
 D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.TagHelpers.output.cache
@@ -867,3 +866,4 @@ D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\D
 D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\ref\MyCrudGame.dll
 D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.pdb
 D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\obj\Debug\net5.0\MyCrudGame.genruntimeconfig.cache
+D:\DesarrolloDeVideojuegosIII-VisualStudio\MyCrudGame_Practicas\MyCrudGame\bin\Debug\net5.0\MyCrudGame.StaticWebAssets.xml

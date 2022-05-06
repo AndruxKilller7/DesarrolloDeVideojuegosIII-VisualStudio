@@ -26,6 +26,7 @@ public class SkinRequest : MonoBehaviour
     static bool usuarioConfirmado;
     static bool verPerfil;
     static bool tiendaDeSkins;
+    static bool verificarPlayerskin;
     public InputField ingresaEmail;
     public InputField ingresarPasword;
     public static string idPlayer;
@@ -37,6 +38,7 @@ public class SkinRequest : MonoBehaviour
     public InputField leerName;
     public InputField leerMiddlName;
     public InputField leerLastName;
+    static int playerskinid;
 
     void Start()
     {
@@ -312,6 +314,52 @@ public void ViewSkinDate(Skin[] skins)
         StartCoroutine(PutPlayer("http://localhost:8242/api/players/"+idPlayer));
     }
 
+    public void DeleteSkin(int idPlayerSkin)
+    {
+        playerskinid = idPlayerSkin;
+        StartCoroutine(VerifyPlayer("http://localhost:8242/api/players/" + idPlayer));
+        if(verificarPlayerskin)
+        {
+            StartCoroutine(Delete("http://localhost:8242/api/playersSkin/" + idPlayerSkin));
+        }
+        
+    }
+    IEnumerator VerifyPlayer(string url)
+    {
+
+        using (UnityWebRequest webrequest = UnityWebRequest.Get(url))
+        {
+            yield return webrequest.SendWebRequest();
+            switch (webrequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                case UnityWebRequest.Result.ProtocolError:
+                    print("error");
+                    break;
+                case UnityWebRequest.Result.Success:
+                    print(webrequest.downloadHandler.text);
+
+
+                    Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
+                    leerNickName.text = player.nickName;
+                    for(int i=0; i<player.playerSkins.Length;i++)
+                    {
+                        if(playerskinid== player.playerSkins[i].id)
+                        {
+                            verificarPlayerskin = true;
+                            playerskinid = player.playerSkins[i].id;
+
+                        }
+                    }
+
+
+
+
+                    break;
+            }
+        }
+    }
     IEnumerator PutPlayer(string url)
     {
         //PlayerSkins players = JsonUtility.FromJson<PlayerSkins>("{\"playerSkins\":" + webrequest.downloadHandler.text + "}");
@@ -344,7 +392,31 @@ public void ViewSkinDate(Skin[] skins)
         }
     }
 
+    IEnumerator Delete(string url)
+    {
+      
 
+
+        using (UnityWebRequest webrequest = UnityWebRequest.Delete(url))
+        {
+           
+            yield return webrequest.SendWebRequest();
+            switch (webrequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                case UnityWebRequest.Result.ProtocolError:
+                    print("error");
+                    break;
+                case UnityWebRequest.Result.Success:
+                    print("SkinEliminada");
+
+
+
+                    break;
+            }
+        }
+    }
 
     IEnumerator PostPlayerSkins(string url,int idSkin,int id)
     {
