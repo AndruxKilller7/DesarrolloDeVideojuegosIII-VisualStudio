@@ -33,7 +33,8 @@ public class SkinRequest : MonoBehaviour
     PlayerSkins[] playercontainer; 
     static int idsSkin =7;
     public InputField leerEmail;
-    public InputField leerNombre;
+    public InputField leerNickName;
+    public InputField leerName;
     public InputField leerMiddlName;
     public InputField leerLastName;
 
@@ -49,8 +50,9 @@ public class SkinRequest : MonoBehaviour
         }
         if (usuarioConfirmado && verPerfil)
         {
-            StartCoroutine(GetRequestPlayer("http://localhost:8242/api/players/1"));
-            
+            StartCoroutine(GetRequestPlayer("http://localhost:8242/api/players/"+idPlayer));
+            StartCoroutine(GetRequestUser("http://localhost:8242/api/usersApi1/"+idPlayer));
+           
         }
 
         //Debug.Log(idPlayer);
@@ -141,7 +143,38 @@ public class SkinRequest : MonoBehaviour
 
 
                     Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
-                    leerNombre.text = player.nickName;
+                    leerNickName.text = player.nickName;
+
+
+
+
+
+                    break;
+            }
+        }
+    }
+    IEnumerator GetRequestUser(string url)
+    {
+
+        using (UnityWebRequest webrequest = UnityWebRequest.Get(url))
+        {
+            yield return webrequest.SendWebRequest();
+            switch (webrequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                case UnityWebRequest.Result.ProtocolError:
+                    print("error");
+                    break;
+                case UnityWebRequest.Result.Success:
+                    print(webrequest.downloadHandler.text);
+
+
+                    User user = JsonUtility.FromJson<User>(webrequest.downloadHandler.text);
+                    leerEmail.text = user.email;
+                    leerName.text = user.firstName;
+                    leerLastName.text = user.lastName;
+                    leerMiddlName.text = user.middleName;
 
 
 
@@ -205,6 +238,7 @@ public class SkinRequest : MonoBehaviour
             }
         }
     }
+
 
 //IEnumerator Authenticate(string url)
 //{
@@ -280,7 +314,10 @@ public void ViewSkinDate(Skin[] skins)
 
     IEnumerator PutPlayer(string url)
     {
-        string json = "{\"Id\":\"1\", \"NickName\":\"Nerdo\" }";
+        //PlayerSkins players = JsonUtility.FromJson<PlayerSkins>("{\"playerSkins\":" + webrequest.downloadHandler.text + "}");
+        string nick = leerNickName.text;
+        string json = "{\"Id\":"+idPlayer.ToString()+", \"NickName\":'"+nick +"' }";
+        Debug.Log(json);
         byte[] body = Encoding.UTF8.GetBytes(json);
        
 

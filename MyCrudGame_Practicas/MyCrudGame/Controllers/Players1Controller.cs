@@ -57,32 +57,41 @@ namespace MyCrudGame.Controllers
         // PUT: api/Players1/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPlayer(int id, Player player)
+        public async Task<IActionResult> PutPlayer(int id, [FromBody]Player player)
         {
-            if (id != player.Id)
+            var playerResult = await Task.Run(() => _context.Players.SingleOrDefault(x => x.NickName == player.NickName));
+            if (playerResult == null)
             {
-                return BadRequest();
-            }
-
-            _context.Entry(player).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PlayerExists(id))
+                if (id != player.Id)
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
-                else
+
+
+                _context.Entry(player).State = EntityState.Modified;
+
+                try
                 {
-                    throw;
+                    await _context.SaveChangesAsync();
                 }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PlayerExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return NoContent();
             }
 
-            return NoContent();
+            return null;
+            
+
+           
         }
 
         // POST: api/Players1

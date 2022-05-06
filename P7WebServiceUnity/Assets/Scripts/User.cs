@@ -2,19 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class User : MonoBehaviour
+[System.Serializable]
+public class User 
 {
-    public string Email;
-    public string Password;
-    public Player Player;
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
+    public string email;
+    public string firstName;
+    public string lastName;
+    public string middleName;
+   
+  
+  
 }
