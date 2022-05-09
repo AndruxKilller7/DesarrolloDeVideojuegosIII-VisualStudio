@@ -39,6 +39,7 @@ public class SkinRequest : MonoBehaviour
     public InputField leerMiddlName;
     public InputField leerLastName;
     static int playerskinid;
+    static int playerskinidVeryfy;
 
     void Start()
     {
@@ -48,6 +49,7 @@ public class SkinRequest : MonoBehaviour
         {
             StartCoroutine(GetRequestPlayersList("http://localhost:8242/api/playersSkin"));
             StartCoroutine(GetRequest("http://localhost:8242/api/players/"+idPlayer));
+            
             
         }
         if (usuarioConfirmado && verPerfil)
@@ -84,6 +86,7 @@ public class SkinRequest : MonoBehaviour
     {
         tiendaDeSkins = true;
         SceneManager.LoadScene(2);
+        Debug.Log(tiendaDeSkins);
     }
 
 
@@ -289,14 +292,7 @@ public void ViewSkinDate(Skin[] skins)
         //skinCode.text = skin.code;
     }
 
-    public void ComprarSkin(int id)
-    {
-       
-        StartCoroutine(PostPlayerSkins("http://localhost:8242/api/playersSkin", id,skinsCantidad+1));
-        
-
-       
-    }
+   
 
     public void TiendaDeSkins()
     {
@@ -318,12 +314,12 @@ public void ViewSkinDate(Skin[] skins)
     {
         playerskinid = idPlayerSkin;
         StartCoroutine(VerifyPlayer("http://localhost:8242/api/players/" + idPlayer));
-        if(verificarPlayerskin)
-        {
-            StartCoroutine(Delete("http://localhost:8242/api/playersSkin/" + idPlayerSkin));
-        }
+       
         
     }
+
+
+
     IEnumerator VerifyPlayer(string url)
     {
 
@@ -342,15 +338,24 @@ public void ViewSkinDate(Skin[] skins)
 
 
                     Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
-                    leerNickName.text = player.nickName;
+                    
                     for(int i=0; i<player.playerSkins.Length;i++)
                     {
-                        if(playerskinid== player.playerSkins[i].id)
+                        if(playerskinid== player.playerSkins[i].skin.id)
                         {
                             verificarPlayerskin = true;
-                            playerskinid = player.playerSkins[i].id;
+                            playerskinid = player.playerSkins[i].skin.id;
+                            playerskinidVeryfy = player.playerSkins[i].id;
+                            Debug.Log(playerskinid);
+                            Debug.Log(player.playerSkins[i].skin.id);
+                            Debug.Log(playerskinidVeryfy);
 
                         }
+                    }
+
+                    if (verificarPlayerskin)
+                    {
+                        StartCoroutine(Delete("http://localhost:8242/api/playersSkin/" + playerskinidVeryfy));
                     }
 
 
@@ -418,12 +423,21 @@ public void ViewSkinDate(Skin[] skins)
         }
     }
 
-    IEnumerator PostPlayerSkins(string url,int idSkin,int id)
+    public void ComprarSkin(int id)
+    {
+        skinsCantidad++;
+        StartCoroutine(PostPlayerSkins("http://localhost:8242/api/playersSkin", id));
+        Debug.Log(skinsCantidad);
+        Debug.Log(idPlayer);
+        Debug.Log(id);
+
+    }
+    IEnumerator PostPlayerSkins(string url, int idSkin)
     {
         WWWForm form = new WWWForm();
-        form.AddField("playerId", int.Parse(idPlayer));
+        form.AddField("playerId", idPlayer);
         form.AddField("skinId", idSkin);
-        form.AddField("Id", id);
+        form.AddField("Id", skinsCantidad);
         using (UnityWebRequest webrequest = UnityWebRequest.Post(url, form))
         {
             yield return webrequest.SendWebRequest();
@@ -437,11 +451,12 @@ public void ViewSkinDate(Skin[] skins)
                     break;
                 case UnityWebRequest.Result.Success:
                     print(webrequest.downloadHandler.text);
-                    Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
-                    print(player.nickName);
+                    //Player player = JsonUtility.FromJson<Player>(webrequest.downloadHandler.text);
+                    //print(player.nickName);
                     break;
 
             };
         }
     }
+
 }

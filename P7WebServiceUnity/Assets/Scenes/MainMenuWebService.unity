@@ -686,7 +686,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 872437141}
         m_TargetAssemblyTypeName: SkinRequest, Assembly-CSharp
-        m_MethodName: TiendaDeSkins
+        m_MethodName: VerTiendaDeSkins
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1326,6 +1326,11 @@ MonoBehaviour:
   ingresaEmail: {fileID: 0}
   ingresarPasword: {fileID: 0}
   skinsCantidad: 0
+  leerEmail: {fileID: 0}
+  leerNickName: {fileID: 0}
+  leerName: {fileID: 0}
+  leerMiddlName: {fileID: 0}
+  leerLastName: {fileID: 0}
 --- !u!1 &1579156434
 GameObject:
   m_ObjectHideFlags: 0
