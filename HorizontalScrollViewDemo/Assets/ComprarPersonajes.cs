@@ -13,13 +13,14 @@ public class ComprarPersonajes : MonoBehaviour
     public string nick;
     public Skins skinsDispobibles;
     public Text error;
-    public static int contadorDePersonajes;
+    public int contadorDePersonajes;
     public GameObject panel;
     public GameObject mainMenu;
+    public bool noDisponible =false;
 
     void Start()
     {
-        StartCoroutine(GetRequest("http://localhost:8242/api/skins1"));
+        StartCoroutine(GetRequest("http://localhost:8242/api/skins"));
         nick = GameManager.instance.playerData.nickName;
         idPlayer = GameManager.instance.playerData.id;
         //moneyPlayer=GameManager.instance.playerData.money ;
@@ -43,6 +44,9 @@ public class ComprarPersonajes : MonoBehaviour
         if(skinsDispobibles.skins[idSkin-1].disponible==true)
         {
             StartCoroutine(BuySkin("http://localhost:8242/api/playerSkins", idSkin));
+            StartCoroutine(PutSkins("http://localhost:8242/api/skins/"+idSkin.ToString(), idSkin));
+
+          
             contadorDePersonajes += 1;
         }
         else
@@ -74,44 +78,45 @@ public class ComprarPersonajes : MonoBehaviour
                     break;
                 case UnityWebRequest.Result.Success:
                     //OnButtonClickRefresh();
-                    skinsDispobibles.skins[id].disponible = false;
+                 
                     print("success");
                     break;
 
             };
         }
     }
-    //IEnumerator PutPlayer(string url)
-    //{
-    //    //PlayerSkins players = JsonUtility.FromJson<PlayerSkins>("{\"playerSkins\":" + webrequest.downloadHandler.text + "}");
-    //    string nick = leerNickName.text;
-    //    string json = "{\"Id\":" + idPlayer.ToString() + ", \"NickName\":'" + nick + "' }";
-    //    Debug.Log(json);
-    //    byte[] body = Encoding.UTF8.GetBytes(json);
+
+    IEnumerator PutSkins(string url,int id)
+    {
+      Debug.Log(id);
+      
+        string json = "{\"Id\":" + id.ToString() + ", \"Name\":'" + skinsDispobibles.skins[id-1].name+ "', \"disponible\":'" + noDisponible+ "' }";
+        Debug.Log(json);
+        byte[] body = Encoding.UTF8.GetBytes(json);
 
 
-    //    using (UnityWebRequest webrequest = UnityWebRequest.Put(url, body))
-    //    {
-    //        webrequest.uploadHandler = (UploadHandler)new UploadHandlerRaw(body);
-    //        webrequest.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-    //        webrequest.SetRequestHeader("Content-Type", "application/json");
-    //        yield return webrequest.SendWebRequest();
-    //        switch (webrequest.result)
-    //        {
-    //            case UnityWebRequest.Result.ConnectionError:
-    //            case UnityWebRequest.Result.DataProcessingError:
-    //            case UnityWebRequest.Result.ProtocolError:
-    //                print("error");
-    //                break;
-    //            case UnityWebRequest.Result.Success:
+        using (UnityWebRequest webrequest = UnityWebRequest.Put(url, body))
+        {
+            webrequest.uploadHandler = (UploadHandler)new UploadHandlerRaw(body);
+            webrequest.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+            webrequest.SetRequestHeader("Content-Type", "application/json");
+            yield return webrequest.SendWebRequest();
+            switch (webrequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                case UnityWebRequest.Result.ProtocolError:
+                    print("error");
+                    break;
+                case UnityWebRequest.Result.Success:
 
 
 
 
-    //                break;
-    //        }
-    //    }
-    //}
+                    break;
+            }
+        }
+    }
 
 
     IEnumerator GetRequest(string url)
@@ -150,7 +155,7 @@ public class ComprarPersonajes : MonoBehaviour
     {
         if(contadorDePersonajes>=3)
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(2);
         }
         else
         {

@@ -1508,6 +1508,12 @@ MonoBehaviour:
     nickName: 
     ranks: []
     playerSkins: []
+    idNavigation:
+      id: 0
+      firstName: 
+      lastName: 
+      email: 
+  availableSkins: []
 --- !u!4 &2105204877
 Transform:
   m_ObjectHideFlags: 0

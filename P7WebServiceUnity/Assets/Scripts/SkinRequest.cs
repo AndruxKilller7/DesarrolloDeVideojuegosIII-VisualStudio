@@ -369,6 +369,7 @@ public void ViewSkinDate(Skin[] skins)
     {
         //PlayerSkins players = JsonUtility.FromJson<PlayerSkins>("{\"playerSkins\":" + webrequest.downloadHandler.text + "}");
         string nick = leerNickName.text;
+      
         string json = "{\"Id\":"+idPlayer.ToString()+", \"NickName\":'"+nick +"' }";
         Debug.Log(json);
         byte[] body = Encoding.UTF8.GetBytes(json);

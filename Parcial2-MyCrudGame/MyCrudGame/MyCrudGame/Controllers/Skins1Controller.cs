@@ -10,7 +10,7 @@ using MyCrudGame.Models;
 
 namespace MyCrudGame.Controllers
 {
-    [Route("api/skins1")]
+    [Route("api/skins")]
     [ApiController]
     public class Skins1Controller : ControllerBase
     {

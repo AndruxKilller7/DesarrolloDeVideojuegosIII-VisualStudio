@@ -7,6 +7,8 @@ public class Player
 {
     public int id;
     public string nickName;
+   
+
     public PlayerSkin[] playerSkins;
   
  
